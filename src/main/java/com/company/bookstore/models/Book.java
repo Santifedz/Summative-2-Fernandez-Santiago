@@ -20,7 +20,7 @@ public class Book implements Serializable {
     private LocalDate publishDate;
     // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private int authorId;
     private String title;
