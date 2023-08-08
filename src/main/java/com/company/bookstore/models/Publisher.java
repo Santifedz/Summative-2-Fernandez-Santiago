@@ -96,7 +96,7 @@ public class Publisher implements Serializable {
         this.email = email;
     }
     public void setname(String name ) {
-        this.email = email;
+        this.name = name;
     }
 
 
@@ -110,7 +110,7 @@ public class Publisher implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(publisherId, publisher_name, street, city, state, postal_code, phone, email);
+        return Objects.hash(publisherId, publisher_name, street, city, state, postal_code, phone, email, name);
     }
 
     @Override
