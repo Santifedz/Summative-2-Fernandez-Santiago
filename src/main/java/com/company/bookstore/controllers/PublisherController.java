@@ -12,43 +12,38 @@ import java.util.Optional;
 @RestController
 public class PublisherController {
     @Autowired
-    PublisherRepository publisherRepo;
-
-    //Get all publishers
+    PublisherRepository Publisher_repository;
     @GetMapping("/publishers")
     public List<Publisher> getAllPublishers(){
-        return publisherRepo.findAll();
+        return Publisher_repository.findAll();
     }
 
-    //Get publisher by id
     @GetMapping("/publisher/{id}")
     public Publisher getPublisherById(@PathVariable Integer id){
-        Optional<Publisher> publisher = publisherRepo.findById(id);
+        Optional<Publisher> publisher = Publisher_repository.findById(id);
         if(publisher.isPresent()){
             return publisher.get();
         }else{
             return null;
         }
     }
-
-    // Create new publisher
+// create
     @PostMapping("/publisher")
     @ResponseStatus(HttpStatus.CREATED)
     public Publisher createPublisher(@RequestBody Publisher publisher){
-        return publisherRepo.save(publisher);
+        return Publisher_repository.save(publisher);
     }
-
-    //update publisher
+    //updates
     @PutMapping("/publisher")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePublisher(@RequestBody Publisher publisher){
-        publisherRepo.save(publisher);
+        Publisher_repository.save(publisher);
     }
 
     //delete publisher by id
     @DeleteMapping("/publishers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePublisher(@PathVariable Integer id){
-        publisherRepo.deleteById(id);
+        Publisher_repository.deleteById(id);
     }
 }
