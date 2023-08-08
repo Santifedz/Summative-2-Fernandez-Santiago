@@ -1,5 +1,6 @@
 package com.company.bookstore.repositories;
 
+import com.company.bookstore.models.Author;
 import com.company.bookstore.models.Book;
 import com.company.bookstore.models.Publisher;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,7 +29,7 @@ class BookRepositoryTest {
     public void setUp() throws Exception{
         bookRepo.deleteAll();
         publisherRepo.deleteAll();
-        authorRepo.deletAll();
+        authorRepo.deleteAll();
     }
 
     @Test
@@ -44,11 +45,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -75,7 +82,13 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
@@ -106,11 +119,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -120,7 +139,7 @@ class BookRepositoryTest {
         author = authorRepo.save(author);
         book = bookRepo.save(book);
 
-         publisher = new Publisher();
+        publisher = new Publisher();
         publisher.setPublisherName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Illinois");
@@ -130,11 +149,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -150,7 +175,7 @@ class BookRepositoryTest {
     }
 
     @Test
-    public void shouldUpdateBook{
+    public void shouldUpdateBook(){
         Publisher publisher = new Publisher();
         publisher.setPublisherName("random publisher");
         publisher.setCity("Chicago");
@@ -161,11 +186,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -199,11 +230,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -233,11 +270,17 @@ class BookRepositoryTest {
         publisher.setPhone("1800-7560-4857");
 
         Author author = new Author();
-        //populate author
+        author.setFirst_name("John");
+        author.setLast_name("Doe");
+        author.setPostal_code("02134");
+        author.setState("MA");
+        author.setCity("Boston");
+        author.setEmail("JDoe@gmail.com");
+        author.setStreet("47 Garden St");
 
         Book book = new Book();
         book.setPublisherId(publisher.getPublisherId());
-        book.setAuthorId(author.getAuthorId());
+        //book.setAuthorId(author.getAuthorId());
         book.setTitle("The Hobbit");
         book.setPrice(59.99);
         book.setIsbn("9780547928227");
@@ -250,6 +293,5 @@ class BookRepositoryTest {
         List<Book> bookList = bookRepo.findByAuthorId(author.getId());
 
         assertEquals(bookList.size(),1);
-        
     }
 }
