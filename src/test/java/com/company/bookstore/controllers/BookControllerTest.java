@@ -34,8 +34,6 @@ class BookControllerTest {
     void setUp() {
         testBook = new Book();
         testBook.setBookId(1);
-        testBook.setAuthorId(2);
-        testBook.setPublisherId(3);
         testBook.setIsbn("9780547928227");
         testBook.setPrice(45.99);
         //testBook.setPublishDate(LocalDate.now());

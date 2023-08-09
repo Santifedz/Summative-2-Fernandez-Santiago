@@ -48,7 +48,7 @@ class PublisherControllerTest {
 
         publisher.setPublisherId(111);
         publisher.setPublisherName("George smith");
-        publisher.setname("Smith");
+        //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
         publisher.setPhone("201-203-3894");
@@ -73,7 +73,7 @@ class PublisherControllerTest {
 
         updatedPublisher.setPublisherId(1);
         updatedPublisher.setPublisherName("George smith");
-        updatedPublisher.setname("Smith");
+        //updatedPublisher.setname("Smith");
         updatedPublisher.setCity("Weehawken");
         updatedPublisher.setEmail("gsmith@gmail.com");
         updatedPublisher.setPhone("201-203-3894");

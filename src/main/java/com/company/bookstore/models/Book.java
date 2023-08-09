@@ -18,17 +18,15 @@ public class Book implements Serializable {
     private int bookId;
     private String isbn;
     private LocalDate publishDate;
-    // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
-    private int authorId;
+    private Author author;
     private String title;
-    // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id")
-    private int publisherId;
+    private Publisher publisher;
     private double price;
 
     public int getBookId() {
@@ -55,12 +53,12 @@ public class Book implements Serializable {
         this.publishDate = publishDate;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -71,12 +69,12 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public int getPublisherId() {
-        return publisherId;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public double getPrice() {
@@ -92,11 +90,24 @@ public class Book implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return bookId == book.bookId && authorId == book.authorId && publisherId == book.publisherId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(title, book.title);
+        return bookId == book.bookId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author.getId(), book.author.getId()) && Objects.equals(title, book.title) && Objects.equals(publisher.getPublisherId(), book.publisher.getPublisherId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookId, isbn, publishDate, authorId, title, publisherId, price);
+        return Objects.hash(bookId, isbn, publishDate, author, title, publisher, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", isbn='" + isbn + '\'' +
+                ", publishDate=" + publishDate +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", publisher=" + publisher +
+                ", price=" + price +
+                '}';
     }
 }

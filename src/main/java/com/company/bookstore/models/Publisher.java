@@ -14,7 +14,6 @@ public class Publisher implements Serializable {
     @Column(name = "publisher_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer publisherId;
-    private String name;
     private String street;
     private String city;
     private String state;
@@ -25,7 +24,8 @@ public class Publisher implements Serializable {
     private String email;
 
     private String publisher_name;
-    @OneToMany(mappedBy = "publisherId", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "publisher_id")
     //private Set<Book> books;
 
     public Integer getPublisherId() {
@@ -54,9 +54,6 @@ public class Publisher implements Serializable {
         return phone;
     }
 
-    public String getname() {
-        return name;
-    }
 
     public void setPublisherId(Integer publisherId) {
         this.publisherId = publisherId;
@@ -95,9 +92,6 @@ public class Publisher implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setname(String name ) {
-        this.name = name;
-    }
 
 
     @Override
@@ -105,18 +99,17 @@ public class Publisher implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
-        return publisherId.equals(publisher.publisherId) && publisher_name.equals(publisher.publisher_name) && street.equals(publisher.street) && city.equals(publisher.city) && state.equals(publisher.state) && postal_code.equals(publisher.postal_code) && phone.equals(publisher.phone) && email.equals(publisher.email) && name.equals(publisher.name);
+        return publisherId.equals(publisher.publisherId) && publisher_name.equals(publisher.publisher_name) && street.equals(publisher.street) && city.equals(publisher.city) && state.equals(publisher.state) && postal_code.equals(publisher.postal_code) && phone.equals(publisher.phone) && email.equals(publisher.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(publisherId, publisher_name, street, city, state, postal_code, phone, email, name);
+        return Objects.hash(publisherId, publisher_name, street, city, state, postal_code, phone, email);
     }
 
     @Override
     public String toString() {
-        return "Publisher{name: " + name + '\'' +
-                ",publisherID: " + publisherId +
+        return "Publisher{publisherID: " + publisherId +
                 ", publisherName: '" + publisher_name + '\'' +
                 ", streetName: '" + street + '\'' +
                 ", cityName: '" + city + '\'' +

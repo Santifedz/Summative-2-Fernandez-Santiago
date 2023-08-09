@@ -31,15 +31,16 @@ class PublisherRepositoryTest {
     void getAllPublishers(){
         Publisher publisher = new Publisher();
 
-        publisher.setPublisherId(111);
         publisher.setPublisherName("George smith");
-        publisher.setname("Smith");
+        //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
         publisher.setPhone("201-203-3894");
         publisher.setState("NJ");
         publisher.setPostalCode("08370");
         publisher.setStreet("Palisade street");
+
+        publisher = pubRepo.save(publisher);
 
         List<Publisher> publishers = pubRepo.findAll();
         assertEquals(1,publishers.size());
@@ -49,9 +50,8 @@ class PublisherRepositoryTest {
     @Test
     void getAllPublishersById(){
         Publisher publisher = new Publisher();
-        publisher.setPublisherId(111);
         publisher.setPublisherName("George smith");
-        publisher.setname("Smith");
+        //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
         publisher.setPhone("201-203-3894");
@@ -65,14 +65,12 @@ class PublisherRepositoryTest {
         assertEquals(publisher2.get(),publisher);
     }
 
-    //Should create a publisher
     @Test
     void createPublisher() {
         Publisher publisher = new Publisher();
 
-        publisher.setPublisherId(111);
         publisher.setPublisherName("George smith");
-        publisher.setname("Smith");
+        //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
         publisher.setPhone("201-203-3894");
@@ -80,7 +78,11 @@ class PublisherRepositoryTest {
         publisher.setPostalCode("08370");
         publisher.setStreet("Palisade street");
 
+        pubRepo.save(publisher);
+
         Optional<Publisher> publisher2 = pubRepo.findById(publisher.getPublisherId());
+
+        assertTrue(publisher2.isPresent());
         assertEquals(publisher2.get(), publisher);
     }
 
@@ -90,7 +92,7 @@ class PublisherRepositoryTest {
         Publisher updatedPublisher = new Publisher();
         updatedPublisher.setPublisherId(1);
         updatedPublisher.setPublisherName("George smith");
-        updatedPublisher.setname("Smith");
+        //updatedPublisher.setname("Smith");
         updatedPublisher.setCity("Weehawken");
         updatedPublisher.setEmail("gsmith@gmail.com");
         updatedPublisher.setPhone("201-203-3894");
@@ -116,7 +118,7 @@ class PublisherRepositoryTest {
 
         publisher.setPublisherId(111);
         publisher.setPublisherName("George smith");
-        publisher.setname("Smith");
+        //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
         publisher.setPhone("201-203-3894");
