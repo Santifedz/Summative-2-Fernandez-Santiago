@@ -34,8 +34,8 @@ public class AuthorControllerTest {
         repo.deleteAll();
         a = new Author();
         a.setId(1);
-        a.setName("Jeff Kinney");
-
+        a.setFirstName("Jeff");
+        a.setLastName("Bob");
     }
 
     //Create
