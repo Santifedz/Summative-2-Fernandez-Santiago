@@ -83,10 +83,10 @@ class PublisherControllerTest {
 
         String input = mapper.writeValueAsString(updatedPublisher);
 
-        mockMvc.perform(post("/publishers/{id}")
+        mockMvc.perform(post("/publishers")
                         .content(input).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isNoContent());
+                .andExpect(status().isCreated());
     }
 
 
