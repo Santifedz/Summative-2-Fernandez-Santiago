@@ -36,7 +36,7 @@ class PublisherControllerTest {
 
     @Test
     void getPublisherById() throws Exception{
-        mockMvc.perform(get("/publisher/1"))
+        mockMvc.perform(get("/publishers/1"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
@@ -59,7 +59,7 @@ class PublisherControllerTest {
 
         String input = mapper.writeValueAsString(publisher);
 
-        mockMvc.perform(post("/publisher")
+        mockMvc.perform(post("/publishers")
                         .content(input)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -83,7 +83,7 @@ class PublisherControllerTest {
 
         String input = mapper.writeValueAsString(updatedPublisher);
 
-        mockMvc.perform(post("/publisher")
+        mockMvc.perform(post("/publishers/{id}")
                         .content(input).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNoContent());
@@ -92,7 +92,7 @@ class PublisherControllerTest {
 
     @Test
     void deletePublisher() throws Exception {
-        mockMvc.perform(delete("/publisher/1"))
+        mockMvc.perform(delete("/publishers/1"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
