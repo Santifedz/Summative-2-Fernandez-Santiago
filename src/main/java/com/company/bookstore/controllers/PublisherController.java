@@ -15,6 +15,7 @@ public class PublisherController {
     PublisherRepository Publisher_repository;
     @GetMapping("/publishers")
     public List<Publisher> getAllPublishers(){
+
         return Publisher_repository.findAll();
     }
 
@@ -34,16 +35,19 @@ public class PublisherController {
         return Publisher_repository.save(publisher);
     }
     //updates
-    @PutMapping("/publisher")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updatePublisher(@RequestBody Publisher publisher){
-        Publisher_repository.save(publisher);
+    @PutMapping("/publishers/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePublisher(@RequestBody Publisher a){
+
+        Publisher_repository.save(a);
     }
 
     //delete publisher by id
     @DeleteMapping("/publishers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePublisher(@PathVariable Integer id){
+    public void deletePublisher(
+            @PathVariable Integer id){
+
         Publisher_repository.deleteById(id);
     }
 }
