@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -15,11 +16,11 @@ public class Book implements Serializable {
     @Id
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookId;
+    private int id;
     private String isbn;
     private LocalDate publishDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER) // issue is in here
     @JoinColumn(name = "author_id")
     private Author author;
     private String title;
@@ -27,14 +28,14 @@ public class Book implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
-    private double price;
+    private BigDecimal price;
 
-    public int getBookId() {
-        return bookId;
+    public int getId() {
+        return id;
     }
 
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIsbn() {
@@ -61,14 +62,6 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Publisher getPublisher() {
         return publisher;
     }
@@ -77,11 +70,20 @@ public class Book implements Serializable {
         this.publisher = publisher;
     }
 
-    public double getPrice() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -90,18 +92,18 @@ public class Book implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return bookId == book.bookId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author.getId(), book.author.getId()) && Objects.equals(title, book.title) && Objects.equals(publisher.getPublisherId(), book.publisher.getPublisherId());
+        return id == book.id && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher) && Objects.equals(price, book.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookId, isbn, publishDate, author, title, publisher, price);
+        return Objects.hash(id, isbn, publishDate, author, title, publisher, price);
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "bookId=" + bookId +
+                "id=" + id +
                 ", isbn='" + isbn + '\'' +
                 ", publishDate=" + publishDate +
                 ", author=" + author +

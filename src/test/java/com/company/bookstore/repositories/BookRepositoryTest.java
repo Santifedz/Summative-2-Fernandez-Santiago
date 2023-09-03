@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -24,25 +25,24 @@ class BookRepositoryTest {
 
     @Autowired
     AuthorRepository authorRepo;
+    Book book;
+
 
     @BeforeEach
     public void setUp() throws Exception{
         bookRepo.deleteAll();
         publisherRepo.deleteAll();
         authorRepo.deleteAll();
-    }
-
-    @Test
-    public void shouldCreateBook(){
 
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
         publisher.setPostalCode("60965");
         publisher.setEmail("contact@randomhouse.com");
         publisher.setPhone("1800-7560-4857");
+        publisherRepo.save(publisher);
 
         Author author = new Author();
         author.setFirstName("John");
@@ -52,34 +52,36 @@ class BookRepositoryTest {
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
         author.setStreet("47 Garden St");
+        author.setPhone("512-933-0234");
+        authorRepo.save(author);
 
         Book book = new Book();
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(BigDecimal.valueOf(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
+        bookRepo.save(book);
+    }
 
-        publisher = publisherRepo.save(publisher);
-        author = authorRepo.save(author);
-        book = bookRepo.save(book);
-
-        Optional<Book> foundBooks = bookRepo.findById(book.getBookId());
-        assertEquals(foundBooks.get(), book);
+    @Test
+    public void shouldCreateBook(){
+        assertTrue(bookRepo.existsById(this.book.getId()));
     }
 
     @Test
     public void shouldReadBookById(){
 
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
         publisher.setPostalCode("60965");
         publisher.setEmail("contact@randomhouse.com");
         publisher.setPhone("1800-7560-4857");
+        publisher = publisherRepo.save(publisher);
 
         Author author = new Author();
         author.setFirstName("John");
@@ -89,20 +91,19 @@ class BookRepositoryTest {
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
         author.setStreet("47 Garden St");
+        author = authorRepo.save(author);
 
-        Book book = new Book();
+        this.book = new Book();
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(BigDecimal.valueOf(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
 
-        publisher = publisherRepo.save(publisher);
-        author = authorRepo.save(author);
         book = bookRepo.save(book);
 
-        Optional<Book> foundBooks = bookRepo.findById(book.getBookId());
+        Optional<Book> foundBooks = bookRepo.findById(book.getId());
         assertEquals(foundBooks.get(), book);
     }
 
@@ -110,7 +111,7 @@ class BookRepositoryTest {
     public void shouldReadAll(){
 
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
@@ -131,7 +132,7 @@ class BookRepositoryTest {
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(new BigDecimal(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
 
@@ -140,7 +141,7 @@ class BookRepositoryTest {
         book = bookRepo.save(book);
 
         publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
@@ -161,7 +162,7 @@ class BookRepositoryTest {
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(new BigDecimal(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
 
@@ -170,14 +171,13 @@ class BookRepositoryTest {
         book = bookRepo.save(book);
 
         List<Book> bookList = bookRepo.findAll();
-
-        assertEquals(bookList.size(), 2);
+        assertEquals(bookList.size(), 3);
     }
 
     @Test
     public void shouldUpdateBook(){
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
@@ -198,7 +198,7 @@ class BookRepositoryTest {
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(BigDecimal.valueOf(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
 
@@ -207,13 +207,13 @@ class BookRepositoryTest {
         book = bookRepo.save(book);
 
         book.setTitle("Not The Hobbit");
-        book.setPrice(0.99);
+        book.setPrice(BigDecimal.valueOf(0.99));
         book.setIsbn("00000000");
         book.setPublishDate(LocalDate.now());
 
         book = bookRepo.save(book);
 
-        Optional<Book> foundBooks = bookRepo.findById(book.getBookId());
+        Optional<Book> foundBooks = bookRepo.findById(book.getId());
         assertEquals(foundBooks.get(), book);
     }
 
@@ -221,13 +221,14 @@ class BookRepositoryTest {
     @Test
     public void shouldDeleteByBookId(){
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
         publisher.setPostalCode("60965");
         publisher.setEmail("contact@randomhouse.com");
         publisher.setPhone("1800-7560-4857");
+        publisher = publisherRepo.save(publisher);
 
         Author author = new Author();
         author.setFirstName("John");
@@ -237,23 +238,21 @@ class BookRepositoryTest {
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
         author.setStreet("47 Garden St");
+        author = authorRepo.save(author);
 
         Book book = new Book();
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(BigDecimal.valueOf(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
-
-        publisher = publisherRepo.save(publisher);
-        author = authorRepo.save(author);
         book = bookRepo.save(book);
 
-        bookRepo.deleteById(book.getBookId());
-        Optional<Book> foundBooks = bookRepo.findById(book.getBookId());
+        int curId = book.getId();
+        bookRepo.deleteById(curId);
 
-        assertFalse(foundBooks.isPresent());
+        assertFalse(bookRepo.existsById(curId));
     }
 
 
@@ -261,7 +260,7 @@ class BookRepositoryTest {
     public void shouldGetBookByAuthorId() {
 
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("random publisher");
+        publisher.setName("random publisher");
         publisher.setCity("Chicago");
         publisher.setState("Il");
         publisher.setStreet("47 Gardner St");
@@ -285,7 +284,7 @@ class BookRepositoryTest {
         book.setPublisher(publisher);
         book.setAuthor(author);
         book.setTitle("The Hobbit");
-        book.setPrice(59.99);
+        book.setPrice(new BigDecimal(59.99));
         book.setIsbn("9780547928227");
         book.setPublishDate(LocalDate.now());
         book = bookRepo.save(book);
