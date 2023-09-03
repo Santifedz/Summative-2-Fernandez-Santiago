@@ -1,34 +1,36 @@
 type Book {
-    book_id: ID!
+    id: ID!
     isbn: String!
-    publisher_date: String!
+    publisherDate: String!
     author: Author!
     publisher: Publisher!
     title: String!
-    price: Int!
+    price: Float!
 }
 
 type Author {
-    author_id: ID!
-    first_name: String!
-    last_name: String!
+    id: ID!
+    firstName: String!
+    lastName: String!
     street: String!
     city: String!
     state: String!
-    postal_code: String!
+    postalCode: String!
     phone: String!
     email: String!
+    books: [Book]
 }
 
 type Publisher {
-    publisher_id: ID!
+    id: ID!
     name: String!
     street: String!
     city: String!
     state: String!
-    postal_code: String!
+    postalCode: String!
     phone: String!
     email: String!
+    books: [Book]
 }
 
 type Query {
