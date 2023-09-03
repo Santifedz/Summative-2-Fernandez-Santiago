@@ -27,7 +27,7 @@ public class AuthorRepositoryTest {
         a.setStreet("47 Garden St");
         a.setCity("Boston");
         a.setState("MA");
-        a.setPostal_code("02134");
+        a.setPostalCode("02134");
         a.setPhone("123-345-2344");
         a.setEmail("JDoe@gmail.com");
         authorList.add(a);
@@ -41,7 +41,7 @@ public class AuthorRepositoryTest {
         author.setId(2);
         author.setFirstName("Mary");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("TX");
         author.setCity("Austin");
         author.setEmail("mary@gmail.com");

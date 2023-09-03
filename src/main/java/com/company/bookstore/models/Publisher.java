@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer,handler"})
@@ -18,12 +17,12 @@ public class Publisher implements Serializable {
     private String city;
     private String state;
 
-    private String postal_code;
+    private String postalCode;
 
     private String phone;
     private String email;
 
-    private String publisher_name;
+    private String publisherName;
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id")
     //private Set<Book> books;
@@ -37,7 +36,7 @@ public class Publisher implements Serializable {
     }
 
     public String getPublisherName() {
-        return publisher_name;
+        return publisherName;
     }
 
     public String getCity() {
@@ -47,7 +46,7 @@ public class Publisher implements Serializable {
         return state;
     }
     public String getPostalCode() {
-        return postal_code;
+        return postalCode;
     }
 
     public String getPhone() {
@@ -58,8 +57,8 @@ public class Publisher implements Serializable {
     public void setPublisherId(Integer publisherId) {
         this.publisherId = publisherId;
     }
-    public void setPublisherName(String publisher_name) {
-        this.publisher_name = publisher_name;
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
     }
 
     public void setStreet(String street) {
@@ -77,8 +76,8 @@ public class Publisher implements Serializable {
     }
 
 
-    public void setPostalCode(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public void setPhone(String phone) {
@@ -99,22 +98,22 @@ public class Publisher implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
-        return publisherId.equals(publisher.publisherId) && publisher_name.equals(publisher.publisher_name) && street.equals(publisher.street) && city.equals(publisher.city) && state.equals(publisher.state) && postal_code.equals(publisher.postal_code) && phone.equals(publisher.phone) && email.equals(publisher.email);
+        return publisherId.equals(publisher.publisherId) && publisherName.equals(publisher.publisherName) && street.equals(publisher.street) && city.equals(publisher.city) && state.equals(publisher.state) && postalCode.equals(publisher.postalCode) && phone.equals(publisher.phone) && email.equals(publisher.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(publisherId, publisher_name, street, city, state, postal_code, phone, email);
+        return Objects.hash(publisherId, publisherName, street, city, state, postalCode, phone, email);
     }
 
     @Override
     public String toString() {
         return "Publisher{publisherID: " + publisherId +
-                ", publisherName: '" + publisher_name + '\'' +
+                ", publisherName: '" + publisherName + '\'' +
                 ", streetName: '" + street + '\'' +
                 ", cityName: '" + city + '\'' +
                 ", state: " + state + '\'' +
-                ", postalCode: " + postal_code + '\'' +
+                ", postalCode: " + postalCode + '\'' +
                 ", phone: " + phone + '\'' +
                 ", email:" + email + '\''
                 ;

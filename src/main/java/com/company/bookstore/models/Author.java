@@ -14,12 +14,12 @@ public class Author implements Serializable {
     @Column(name = "author_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String first_name;
-    String last_name;
+    String firstName;
+    String lastName;
     String street;
     String city;
     String state;
-    String postal_code;
+    String postalCode;
     String phone;
     String email;
 
@@ -32,19 +32,19 @@ public class Author implements Serializable {
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getStreet() {
@@ -71,12 +71,12 @@ public class Author implements Serializable {
         this.state = state;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getPhone() {
@@ -104,11 +104,11 @@ public class Author implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return id == author.id && Objects.equals(first_name, author.first_name) && Objects.equals(last_name, author.last_name) && Objects.equals(street, author.street) && Objects.equals(city, author.city) && Objects.equals(state, author.state) && Objects.equals(postal_code, author.postal_code) && Objects.equals(phone, author.phone) && Objects.equals(email, author.email);
+        return id == author.id && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(street, author.street) && Objects.equals(city, author.city) && Objects.equals(state, author.state) && Objects.equals(postalCode, author.postalCode) && Objects.equals(phone, author.phone) && Objects.equals(email, author.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, street, city, state, postal_code, phone, email);
+        return Objects.hash(id, firstName, lastName, street, city, state, postalCode, phone, email);
     }
 }

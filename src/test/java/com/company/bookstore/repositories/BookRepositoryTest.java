@@ -47,7 +47,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -84,7 +84,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -121,7 +121,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -151,7 +151,7 @@ class BookRepositoryTest {
         author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -188,7 +188,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -232,7 +232,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
@@ -274,7 +274,7 @@ class BookRepositoryTest {
         Author author = new Author();
         author.setFirstName("John");
         author.setLastName("Doe");
-        author.setPostal_code("02134");
+        author.setPostalCode("02134");
         author.setState("MA");
         author.setCity("Boston");
         author.setEmail("JDoe@gmail.com");
