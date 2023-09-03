@@ -39,12 +39,11 @@ public class GraphController {
 
     @SchemaMapping
     public Author author(Book book){
-        return authorRepo.findById(book.getAuthor().getId()).orElse(null);
+        return authorRepo.findById(book.getAuthorId()).orElse(null);
     }
 
     @SchemaMapping
     public Publisher publisher(Book book){
-        return publisherRepo.findById(book.getPublisher().getId()).orElse(null);
+        return publisherRepo.findById(book.getPublisherId()).orElse(null);
     }
-
 }
