@@ -55,8 +55,6 @@ public class AuthorControllerTest {
                 .andExpect(status().isOk());
     }
 
-
-
     //Read All
     @Test
     public void getAllAuthorsTest() throws Exception {
@@ -68,12 +66,11 @@ public class AuthorControllerTest {
     @Test
     public void updateAuthorTest() throws Exception {
         String inputJson = mapper.writeValueAsString(a);
-        mockMvc.perform(put("/authors/{id}", a.getId())
+        mockMvc.perform(put("/authors", a.getId())
                         .content(inputJson)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
 
     //Delete
     @Test
@@ -82,5 +79,4 @@ public class AuthorControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
-
 }

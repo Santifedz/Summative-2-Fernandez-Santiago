@@ -41,7 +41,7 @@ public class AuthorController {
     }
 
     // update
-    @PutMapping("/authors/{id}")
+    @PutMapping("/authors")
     @ResponseStatus(HttpStatus.OK)
     public void updateAuthor(@RequestBody Author a){
         repo.save(a);
@@ -53,6 +53,4 @@ public class AuthorController {
     public void deleteAuthorById(@PathVariable int id){
         repo.deleteById(id);
     }
-
-
 }
