@@ -11,10 +11,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.awt.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import static org.junit.jupiter.api.Assertions.*;
+import java.math.BigDecimal;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -33,9 +31,9 @@ class BookControllerTest {
     @BeforeEach
     void setUp() {
         testBook = new Book();
-        testBook.setBookId(1);
+        testBook.setId(1);
         testBook.setIsbn("9780547928227");
-        testBook.setPrice(45.99);
+        testBook.setPrice(new BigDecimal(45.99));
         //testBook.setPublishDate(LocalDate.now());
         testBook.setTitle("The Hobbit");
 
@@ -69,7 +67,7 @@ class BookControllerTest {
     @Test
     void updateBooks() throws Exception {
         testBook.setIsbn("900000000000");
-        testBook.setPrice(99.99);
+        testBook.setPrice(new BigDecimal(99.99));
         // testBook.setPublishDate(LocalDate.now());
         testBook.setTitle("not The Hobbit");
 

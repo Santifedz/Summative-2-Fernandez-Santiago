@@ -15,12 +15,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.HashSet;
-
 @WebMvcTest(PublisherController.class)
 class PublisherControllerTest {
     @MockBean
-    private PublisherRepository publisherepo;
+    private PublisherRepository publisherRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,9 +43,8 @@ class PublisherControllerTest {
     @Test
     void createPublisher() throws Exception {
         Publisher publisher = new Publisher();
-
-        publisher.setPublisherId(111);
-        publisher.setPublisherName("George smith");
+        publisher.setId(111);
+        publisher.setName("George smith");
         //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
@@ -55,10 +52,7 @@ class PublisherControllerTest {
         publisher.setState("NJ");
         publisher.setPostalCode("08370");
         publisher.setStreet("Palisade street");
-
-
         String input = mapper.writeValueAsString(publisher);
-
         mockMvc.perform(post("/publishers")
                         .content(input)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -70,9 +64,8 @@ class PublisherControllerTest {
     @Test
     void updatePublisher() throws Exception{
         Publisher updatedPublisher = new Publisher();
-
-        updatedPublisher.setPublisherId(1);
-        updatedPublisher.setPublisherName("George smith");
+        updatedPublisher.setId(1);
+        updatedPublisher.setName("George smith");
         //updatedPublisher.setname("Smith");
         updatedPublisher.setCity("Weehawken");
         updatedPublisher.setEmail("gsmith@gmail.com");
@@ -80,9 +73,7 @@ class PublisherControllerTest {
         updatedPublisher.setState("NJ");
         updatedPublisher.setPostalCode("08370");
         updatedPublisher.setStreet("Palisade street");
-
         String input = mapper.writeValueAsString(updatedPublisher);
-
         mockMvc.perform(post("/publishers")
                         .content(input).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())

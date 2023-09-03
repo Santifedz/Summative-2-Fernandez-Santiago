@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +30,7 @@ class PublisherRepositoryTest {
     void getAllPublishers(){
         Publisher publisher = new Publisher();
 
-        publisher.setPublisherName("George smith");
+        publisher.setName("George smith");
         //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
@@ -50,7 +49,7 @@ class PublisherRepositoryTest {
     @Test
     void getAllPublishersById(){
         Publisher publisher = new Publisher();
-        publisher.setPublisherName("George smith");
+        publisher.setName("George smith");
         //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
@@ -61,7 +60,7 @@ class PublisherRepositoryTest {
 
         publisher = pubRepo.save(publisher);
 
-        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getPublisherId());
+        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getId());
         assertEquals(publisher2.get(),publisher);
     }
 
@@ -69,7 +68,7 @@ class PublisherRepositoryTest {
     void createPublisher() {
         Publisher publisher = new Publisher();
 
-        publisher.setPublisherName("George smith");
+        publisher.setName("George smith");
         //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
@@ -80,7 +79,7 @@ class PublisherRepositoryTest {
 
         pubRepo.save(publisher);
 
-        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getPublisherId());
+        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getId());
 
         assertTrue(publisher2.isPresent());
         assertEquals(publisher2.get(), publisher);
@@ -90,8 +89,8 @@ class PublisherRepositoryTest {
     @Test
     void updatePublisher() {
         Publisher updatedPublisher = new Publisher();
-        updatedPublisher.setPublisherId(1);
-        updatedPublisher.setPublisherName("George smith");
+        updatedPublisher.setId(1);
+        updatedPublisher.setName("George smith");
         //updatedPublisher.setname("Smith");
         updatedPublisher.setCity("Weehawken");
         updatedPublisher.setEmail("gsmith@gmail.com");
@@ -103,11 +102,11 @@ class PublisherRepositoryTest {
 
         updatedPublisher = pubRepo.save(updatedPublisher);
 
-        updatedPublisher.setPublisherName("UPDATED");
+        updatedPublisher.setName("UPDATED");
 
         pubRepo.save(updatedPublisher);
 
-        Optional<Publisher> publisher2 = pubRepo.findById(updatedPublisher.getPublisherId());
+        Optional<Publisher> publisher2 = pubRepo.findById(updatedPublisher.getId());
         assertEquals(publisher2.get(),updatedPublisher);
     }
 
@@ -116,8 +115,8 @@ class PublisherRepositoryTest {
     void deletePublisher(){
         Publisher publisher = new Publisher();
 
-        publisher.setPublisherId(111);
-        publisher.setPublisherName("George smith");
+        publisher.setId(111);
+        publisher.setName("George smith");
         //publisher.setname("Smith");
         publisher.setCity("Weehawken");
         publisher.setEmail("gsmith@gmail.com");
@@ -128,9 +127,9 @@ class PublisherRepositoryTest {
 
         publisher = pubRepo.save(publisher);
 
-        pubRepo.deleteById(publisher.getPublisherId());
+        pubRepo.deleteById(publisher.getId());
 
-        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getPublisherId());
+        Optional<Publisher> publisher2 = pubRepo.findById(publisher.getId());
         assertFalse(publisher2.isPresent());
     }
 }

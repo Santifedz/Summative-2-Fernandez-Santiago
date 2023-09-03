@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,5 +86,27 @@ public class AuthorRepositoryTest {
     void deleteAuthorTest() {
         repo.deleteById(a.getId());
         assertFalse(repo.existsById(a.getId()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthorRepositoryTest that = (AuthorRepositoryTest) o;
+        return Objects.equals(repo, that.repo) && Objects.equals(a, that.a) && Objects.equals(authorList, that.authorList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(repo, a, authorList);
+    }
+
+    @Override
+    public String toString() {
+        return "AuthorRepositoryTest{" +
+                "repo=" + repo +
+                ", a=" + a +
+                ", authorList=" + authorList +
+                '}';
     }
 }

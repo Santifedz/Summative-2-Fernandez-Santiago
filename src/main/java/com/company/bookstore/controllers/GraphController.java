@@ -12,9 +12,6 @@ import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.graphql.data.method.annotation.Argument;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Optional;
-
 
 @Controller
 public class GraphController {
@@ -26,17 +23,17 @@ public class GraphController {
     BookRepository bookRepo;
 
     @QueryMapping
-    public Author findAuthorById(@Argument Integer id){
+    public Author findAuthorById(@Argument int id){
         return authorRepo.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public Publisher findPublisherById(@Argument Integer id){
+    public Publisher findPublisherById(@Argument int id){
         return publisherRepo.findById(id).orElse(null);
     }
 
     @QueryMapping
-    public Book findBookById(@Argument Integer id){
+    public Book findBookById(@Argument int id){
         return bookRepo.findById(id).orElse(null);
     }
 
@@ -47,7 +44,7 @@ public class GraphController {
 
     @SchemaMapping
     public Publisher publisher(Book book){
-        return publisherRepo.findById(book.getPublisher().getPublisherId()).orElse(null);
+        return publisherRepo.findById(book.getPublisher().getId()).orElse(null);
     }
 
 }
