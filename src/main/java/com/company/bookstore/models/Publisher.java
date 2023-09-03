@@ -18,13 +18,11 @@ public class Publisher implements Serializable {
     private String street;
     private String city;
     private String state;
-
     private String postalCode;
-
     private String phone;
     private String email;
-
     private String name;
+
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
@@ -44,9 +42,11 @@ public class Publisher implements Serializable {
     public String getCity() {
         return city;
     }
+
     public String getState() {
         return state;
     }
+
     public String getPostalCode() {
         return postalCode;
     }
@@ -55,10 +55,10 @@ public class Publisher implements Serializable {
         return phone;
     }
 
-
     public void setId(Integer id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -67,16 +67,13 @@ public class Publisher implements Serializable {
         this.street = street;
     }
 
-
     public void setCity(String city) {
         this.city = city;
     }
 
-
     public void setState(String state) {
         this.state = state;
     }
-
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
@@ -93,7 +90,6 @@ public class Publisher implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     @Override
     public boolean equals(Object o) {

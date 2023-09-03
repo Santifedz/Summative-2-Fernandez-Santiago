@@ -20,14 +20,12 @@ public class Book implements Serializable {
     private String isbn;
     private LocalDate publishDate;
 
-    @ManyToOne(fetch = FetchType.EAGER) // issue is in here
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @Column(name = "author_id")
+    private int authorId;
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
+    @Column(name = "publisher_id")
+    private int publisherId;
     private BigDecimal price;
 
     public int getId() {
@@ -54,20 +52,20 @@ public class Book implements Serializable {
         this.publishDate = publishDate;
     }
 
-    public Author getAuthor() {
-        return author;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public int getPublisherId() {
+        return publisherId;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 
     public String getTitle() {
@@ -92,12 +90,12 @@ public class Book implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher) && Objects.equals(price, book.price);
+        return id == book.id && authorId == book.authorId && publisherId == book.publisherId && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(title, book.title) && Objects.equals(price, book.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, isbn, publishDate, author, title, publisher, price);
+        return Objects.hash(id, isbn, publishDate, authorId, title, publisherId, price);
     }
 
     @Override
@@ -106,9 +104,9 @@ public class Book implements Serializable {
                 "id=" + id +
                 ", isbn='" + isbn + '\'' +
                 ", publishDate=" + publishDate +
-                ", author=" + author +
+                ", authorId=" + authorId +
                 ", title='" + title + '\'' +
-                ", publisher=" + publisher +
+                ", publisherId=" + publisherId +
                 ", price=" + price +
                 '}';
     }

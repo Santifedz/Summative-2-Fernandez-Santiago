@@ -101,10 +101,6 @@ public class Author implements Serializable {
         this.email = email;
     }
 
-//    public String getFullName() {
-//        return getFirstName() + " " + getLastName();
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,5 +112,21 @@ public class Author implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, street, city, state, postalCode, phone, email);
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", books=" + books +
+                '}';
     }
 }
